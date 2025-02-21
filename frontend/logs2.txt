@@ -1,0 +1,53 @@
+nohup: ignoring input
+2025-02-21 00:36:15 - Your app is available at http://0.0.0.0:8000
+response_dict ConocoPhillips has a production base in diverse geographies including Alaska, Lower 48 (continental US), Canada, Colombia, Norway, United Kingdom, Libya, Qatar, China, Japan, Cambodia, Malaysia, Singapore, and Australia. This information is derived from the image on page 7, which lists the locations of ConocoPhillips' exploration and production activities. The image supports the answer by providing a visual representation of the global locations where ConocoPhillips operates.
+
+Sources:
+[Source: 2024-conocophillips-proxy-statement.pdf, Page: 7]
+response_dict ConocoPhillips has a production base in diverse geographies including Alaska, Lower 48, Canada, Colombia, Norway, United Kingdom, Libya, Qatar, China, Japan, Cambodia, Malaysia, Singapore, and Australia. This information is derived from the image on page 7, which lists the locations of ConocoPhillips' exploration and production activities. The image provides a visual representation of the company's global operations, supporting the textual data provided.
+
+Sources:
+[Source: 2024-conocophillips-proxy-statement.pdf, Page: 7]
+response_dict ConocoPhillips has a production base in diverse geographies including Alaska, Lower 48, Canada, Colombia, Norway, United Kingdom, Libya, Qatar, China, Japan, Cambodia, Malaysia, Singapore, and Australia. This information is derived from the image on page 7, which lists the locations of ConocoPhillips' exploration and production activities. The image provides a visual representation of the company's global operations and activities, supporting the textual data.
+
+Sources:
+[Source: 2024-conocophillips-proxy-statement.pdf, Page: 7]
+response_dict ConocoPhillips has a production base in diverse geographies including Alaska, Lower 48, Canada, Colombia, Norway, United Kingdom, Libya, Qatar, China, Japan, Cambodia, Malaysia, Singapore, and Australia. This information is derived from the image on page 7, which lists the locations of ConocoPhillips' exploration and production activities. The image supports the answer by providing a visual representation of the global operations and activities of ConocoPhillips.
+
+Sources:
+[Source: 2024-conocophillips-proxy-statement.pdf, Page: 7]
+response_dict ConocoPhillips has a production base in diverse geographies including Alaska, Lower 48, Canada, Colombia, Norway, United Kingdom, Libya, Qatar, China, Japan, Cambodia, Malaysia, Singapore, and Australia. This information is derived from the image on page 7, which lists the locations of ConocoPhillips' exploration and production activities. The image provides a clear visual representation of the global operations and activities of ConocoPhillips, supporting the textual data.
+
+Sources:
+[Source: 2024-conocophillips-proxy-statement.pdf, Page: 7]
+response_dict ConocoPhillips has a production base in diverse geographies including Alaska, Lower 48, Canada, Colombia, Norway, United Kingdom, Libya, Qatar, China, Japan, Cambodia, Malaysia, Singapore, and Australia. This information is derived from the image on page 7, which lists the locations of ConocoPhillips' exploration and production activities. The image provides a clear visual representation of the global operations and activities of ConocoPhillips, supporting the textual data.
+
+Sources:
+[Source: 2024-conocophillips-proxy-statement.pdf, Page: 7]
+response_dict ConocoPhillips has a production base in diverse geographies including Alaska, Lower 48, Canada, Colombia, Norway, United Kingdom, Libya, Qatar, China, Japan, Cambodia, Malaysia, Singapore, and Australia. This information is derived from the image on page 7, which lists the locations of ConocoPhillips' exploration and production activities. The image provides a visual representation of the global operations and activities, supporting the detailed list of locations.
+
+Sources:
+[Source: 2024-conocophillips-proxy-statement.pdf, Page: 7]
+response_dict ConocoPhillips has a production base in diverse geographies including Alaska, Lower 48, Canada, Colombia, Norway, United Kingdom, Libya, Qatar, China, Japan, Cambodia, Malaysia, Singapore, and Australia. This information is derived from the image on page 7, which lists the locations of ConocoPhillips' exploration and production activities. The image provides a visual representation of the global operations and activities, supporting the detailed list of locations.
+
+Sources:
+[Source: 2024-conocophillips-proxy-statement.pdf, Page: 7]
+response_dict ConocoPhillips has a production base in diverse geographies including Alaska, Lower 48, Canada, Colombia, Norway, United Kingdom, Libya, Qatar, China, Japan, Cambodia, Malaysia, Singapore, and Australia. This information is derived from the image on page 7, which lists the locations of ConocoPhillips' exploration and production activities. The image supports the answer by providing a visual representation of the global operations and activities of ConocoPhillips.
+
+Sources:
+[Source: 2024-conocophillips-proxy-statement.pdf, Page: 7]
+response_dict ConocoPhillips has a production base in diverse geographies including Alaska, Lower 48, Canada, Colombia, Norway, United Kingdom, Libya, Qatar, China, Japan, Cambodia, Malaysia, Singapore, and Australia. This information is derived from the image on page 7, which lists the locations of exploration and production activities. The image supports the answer by visually listing the countries where ConocoPhillips operates.
+
+Sources:
+[Source: 2024-conocophillips-proxy-statement.pdf, Page: 7]
+response_dict ConocoPhillips has a production base in diverse geographies including Alaska, Lower 48, Canada, Colombia, Norway, United Kingdom, Libya, Qatar, China, Japan, Cambodia, Malaysia, Singapore, and Australia. This information is derived from the image on page 7, which lists the locations of exploration and production activities. The image supports the answer by providing a visual representation of the global operations and activities of ConocoPhillips.
+
+Sources:
+[Source: 2024-conocophillips-proxy-statement.pdf, Page: 7]
+2025-02-21 02:40:02 - Translated markdown file for en-US not found. Defaulting to chainlit.md.
+2025-02-21 03:07:08 - Translated markdown file for en-US not found. Defaulting to chainlit.md.
+response_dict ConocoPhillips has a production base in diverse geographies including Alaska, Lower 48, Canada, Colombia, Norway, United Kingdom, Libya, Qatar, China, Japan, Cambodia, Malaysia, Singapore, and Australia. This information is derived from the image on page 7, which lists the locations under 'Exploration and Production'. The image supports the answer by visually presenting the locations where ConocoPhillips operates.
+
+Sources:
+[Source: 2024-conocophillips-proxy-statement.pdf, Page: 7]
+2025-02-21 03:35:28 - Translated markdown file for en-US not found. Defaulting to chainlit.md.

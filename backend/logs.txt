@@ -1,0 +1,17 @@
+nohup: ignoring input
+[nltk_data] Downloading package punkt_tab to
+[nltk_data]     /home/shanu11/pdfrag/lib/python3.12/site-
+[nltk_data]     packages/llama_index/core/_static/nltk_cache...
+[nltk_data]   Package punkt_tab is already up-to-date!
+INFO:chromadb.telemetry.product.posthog:Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+INFO:     Started server process [1568]
+INFO:     Waiting for application startup.
+INFO:appv2:Loading existing ChromaDB index...
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8001 (Press CTRL+C to quit)
+ERROR:appv2:Error processing query: "MultiModalConversationalEngine" object has no field "_retriever"
+load INSTRUCTOR_Transformer
+max_seq_length  512
+INFO:     127.0.0.1:58414 - "POST /query HTTP/1.1" 500 Internal Server Error
+ERROR:appv2:Error processing query: "MultiModalConversationalEngine" object has no field "_retriever"
+INFO:     127.0.0.1:54932 - "POST /query HTTP/1.1" 500 Internal Server Error
