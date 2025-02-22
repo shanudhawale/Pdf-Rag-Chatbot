@@ -2,7 +2,13 @@
 
 A sophisticated PDF chatbot leveraging Retrieval-Augmented Generation (RAG) with multimodal capabilities, enabling intelligent conversations about both textual and visual content from PDF documents.
 
-## 🌟 Features
+## 🎥 Demo
+
+![PDF RAG Chatbot Demo](assets/demo.gif)
+
+*Demo shows the chatbot analyzing a PDF document, processing queries, and displaying responses with source attribution and images*
+
+## Features
 
 - **Advanced RAG Implementation**: Custom multimodal RAG system using LlamaIndex + LlamaParse + Instructor Embeddings + ChromaDB + GPT-4V + Guardrails via Custom Prompt
 - **PDF Processing**: Intelligent handling of PDFs including text and images
@@ -11,7 +17,7 @@ A sophisticated PDF chatbot leveraging Retrieval-Augmented Generation (RAG) with
 - **Visual Context**: Dynamic display of relevant images from PDFs
 - **Conversation Memory**: Context-aware responses using chat history
 
-## 🧠 Technical Architecture
+## Technical Architecture
 
 ### RAG Implementation Details
 
@@ -119,6 +125,10 @@ uvicorn appv2:app --reload --port 8001 --host 0.0.0.0
 ```bash
 ngrok http --url=<url_value> http://0.0.0.0:8000
 ```
+## Layout Demo
+
+![Layout Demo](demo.gif)
+
 ## 🔧 Troubleshooting
 
 Common issues and solutions:
