@@ -12,7 +12,7 @@ A sophisticated PDF chatbot leveraging Retrieval-Augmented Generation (RAG) with
 - **Conversation Memory**: Context-aware responses using chat history
 
 ## Technical Architecture
-
+![Architecture](pdf-rag-chat.png)
 ### RAG Implementation Details
 
 The system implements a sophisticated RAG architecture with the following components:
