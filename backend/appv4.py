@@ -312,7 +312,7 @@ class MultiModalConversationalEngine(CustomQueryEngine):
             for msg in chat_history
         ])
         # Get relevant documents
-        retrieved_nodes = self._retriever.retrieve(query_str+"\n"+chat_history_str_content)
+        retrieved_nodes = self._retriever.retrieve(query_str)
         print("@##@",retrieved_nodes)
         # Prepare context from nodes
         context_chunks = []
@@ -346,7 +346,7 @@ class MultiModalConversationalEngine(CustomQueryEngine):
         
         # Format prompt with context and history
         prompt = self._context_prompt.format(
-            chat_history=chat_history_str,
+            chat_history=chat_history_str_content,
             context_str=context_text,
             query_str=query_str
         )
