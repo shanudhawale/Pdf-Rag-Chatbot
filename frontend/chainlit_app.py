@@ -6,7 +6,7 @@ import json
 import asyncio
 
 # API endpoint
-API_BASE_URL = "http://localhost:8001"
+API_BASE_URL = "http://127.0.0.1:8001"
 
 async def process_query(query: str, user_id: str):
     """Send query to FastAPI backend and process response"""
@@ -41,25 +41,28 @@ async def start():
 async def main(message: cl.Message):
     user_id = cl.user_session.get("user_id")
     msg1 = cl.Message(content="")
-    token_list = "Thinking... ... ... .. .. . . . ."
+    token_list = "Thinking... ...  .. .. .. . . . . . . . . . . . . . . ."
     for token in token_list.split(' '):
         current_chunk = token + " "
-        await asyncio.sleep(0.3)
+        await asyncio.sleep(0.5)
         await msg1.stream_token(current_chunk)
     await msg1.send()
     
     try:
+        source_id = ""
         response_data = await process_query(message.content, user_id)
-        # print("response_data", response_data)
+        #print("response_data", response_data['source_nodes'])
         response_dict = response_data["response"]
         print("response_dict", response_dict)
         elements = []
         total_text = []
         if "source_nodes" in response_data:
             for idx, node in enumerate(response_data["source_nodes"]):
+               
                 pdf_name = node['metadata'].get('pdf_name', 'Unknown')
                 page_num = node['metadata'].get('page_num', 'Unknown')
                 source_id = f"Source: {pdf_name}, Page: {page_num}"
+                print("/////",pdf_name, page_num, source_id)
                 total_text.append(node['text'])
                 if "image_base64" in node:
                     elements.append(
@@ -102,3 +105,8 @@ async def on_action(action):
             content=f"Error displaying source: {str(e)}",
             type="error"
         ).send()
+
+#if __name__ == "__main__":
+#    from chainlit.cli import run_chainlit
+
+#    run_chainlit(__file__)

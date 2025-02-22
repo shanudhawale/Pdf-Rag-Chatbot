@@ -14,7 +14,7 @@ from copy import deepcopy
 from llama_index.core.query_engine import CustomQueryEngine, SimpleMultiModalQueryEngine
 from llama_index.core.retrievers import BaseRetriever
 from llama_index.multi_modal_llms.openai import OpenAIMultiModal
-from llama_index.core.schema import ImageNode, NodeWithScore, MetadataMode, TextNode
+from llama_index.core.schema import ImageNode, NodeWithScore, MetadataMode, TextNode, ImageDocument
 from llama_index.core.prompts import PromptTemplate
 from llama_index.core.base.response.schema import Response
 from dotenv import load_dotenv
@@ -189,30 +189,37 @@ CONTEXT_PROMPT = PromptTemplate(QA_PROMPT_TMPL)
 class MultiModalConversationalEngine(CustomQueryEngine):
     """Custom query engine for multimodal conversational RAG"""
     
-    def __init__(
+    def intialize_engine(
         self,
         retriever,
         multi_modal_llm: OpenAIMultiModal,
         memory_buffer: ChatMemoryBuffer = None,
         context_prompt: PromptTemplate = CONTEXT_PROMPT,
     ):
-        """Initialize the engine with required components"""
-        super().__init__()
         self._retriever = retriever
         self._llm = multi_modal_llm
-        self._memory = memory_buffer or ChatMemoryBuffer.from_defaults()
+        self._memory = memory_buffer or ChatMemoryBuffer.from_defaults(token_limit=2)
         self._context_prompt = context_prompt
+
 
     def _create_image_documents(self, image_paths):
         """Create image documents for the OpenAI multimodal model"""
         image_documents = []
+        #print("@@@@@@@@@",image_paths)
         for path in image_paths:
             try:
+                logger.info(f'@@@@@@@{path} {type(path)}')
+                path = path.replace("\\","/")
+                #logger.info(f'@@@@@@@{path}')
                 if path and os.path.exists(path):  # Check if path exists
                     with open(path, "rb") as f:
                         image_data = f.read()
-                        image_documents.append({"image": image_data})
-                else:
+                        image_doc = ImageDocument(
+                            image_data=image_data,
+                            image_path=path,
+                        )
+                        image_documents.append(image_doc)
+               	else:
                     logger.warning(f"Image path does not exist: {path}")
             except Exception as e:
                 logger.error(f"Error reading image {path}: {e}")
@@ -294,9 +301,20 @@ class MultiModalConversationalEngine(CustomQueryEngine):
     def custom_query(self, query_str: str) -> Response:
         """Process query with context and chat history"""
         
+
+        # Get chat history
+        chat_history = self._memory.get()
+        chat_history_str = "\n".join([
+            f"{msg.role}: {msg.content}"
+            for msg in chat_history
+        ])
+        chat_history_str_content = "\n".join([
+            f"{msg.content}"
+            for msg in chat_history
+        ])
         # Get relevant documents
-        retrieved_nodes = self._retriever.retrieve(query_str)
-        # print(retrieved_nodes)
+        retrieved_nodes = self._retriever.retrieve(query_str+"\n"+chat_history_str_content)
+        print("@##@",retrieved_nodes)
         # Prepare context from nodes
         context_chunks = []
         image_nodes = []
@@ -320,12 +338,12 @@ class MultiModalConversationalEngine(CustomQueryEngine):
         # Combine text context
         context_text = "\n\n".join(context_chunks)
         
-        # Get chat history
-        chat_history = self._memory.get()
-        chat_history_str = "\n".join([
-            f"{msg.role}: {msg.content}"
-            for msg in chat_history
-        ])
+        #chat_history = self._memory.get()
+        #print("!@#!!", chat_history)
+        #chat_history_str = "\n".join([
+        #    f"{msg.role}: {msg.content}"
+        #    for msg in chat_history
+        #])
         
         # Format prompt with context and history
         prompt = self._context_prompt.format(
@@ -340,8 +358,8 @@ class MultiModalConversationalEngine(CustomQueryEngine):
             if isinstance(node.node, ImageNode):
                 if hasattr(node.node, 'image_path'):
                     all_image_paths.append(node.node.image_path)
-            elif "image_paths" in node.node.metadata:
-                paths = node.node.metadata["image_paths"]
+            elif "image_path" in node.node.metadata:
+                paths = node.node.metadata["image_path"]
                 if isinstance(paths, list):
                     all_image_paths.extend(paths)
                 else:
@@ -352,7 +370,7 @@ class MultiModalConversationalEngine(CustomQueryEngine):
         
         # Create image documents
         image_documents = self._create_image_documents(all_image_paths)
-        
+        print(image_documents)
         if not image_documents:
             logger.warning("No valid images found in the retrieved nodes")
         
@@ -363,24 +381,23 @@ class MultiModalConversationalEngine(CustomQueryEngine):
         )
         
         final_response = str(text_response)
-        print(final_response)
+        print("Final response::",final_response)
         # Process and restructure the response
         processed_response = self.process_response(final_response)
-        
-        # Convert back to string for storage
         final_response_str = str(processed_response["result_response"]["explanation"])
-        page_number_retrived = str(processed_response["refrence"][0]["page_number"])
-        pdf_name_retrived = str(processed_response["refrence"][0]["pdf_name"])
+        print(">>>>>>>>>",processed_response["refrence"])
+        page_number_retrived = [str(processed_response["refrence"][i]["page_number"].split(' ')[-1]) for i in range(len(processed_response["refrence"]))]
+        pdf_name_retrived = [str(processed_response["refrence"][i]["pdf_name"]) for i in range(len(processed_response["refrence"]))]
         print(page_number_retrived, pdf_name_retrived)
-        print(final_response_str)
-        # Update memory with new interaction
-        self._memory.put({"role": "user", "content": query_str})
-        self._memory.put({"role": "assistant", "content": final_response_str})
+        #print(final_response_str)
+        
+        self._memory.put(ChatMessage(role="user", content=f"{query_str}", timestamp=datetime.now()))
+        self._memory.put(ChatMessage(role="assistant",content=f"{final_response_str}", timestamp=datetime.now()))
         
         # Process source nodes and include base64 images
         seen_nodes = set()
         source_nodes_with_images = []
-        
+        print("@@@@@",retrieved_nodes)
         for node in retrieved_nodes:
             if isinstance(node, NodeWithScore):
                 # Get the unique identifier tuple
@@ -388,7 +405,7 @@ class MultiModalConversationalEngine(CustomQueryEngine):
                 page_num = node.node.metadata.get("page_num", 0)
                 node_id = (pdf_name, page_num)
                 
-                if node_id not in seen_nodes and str(page_number_retrived) == str(page_num) and str(pdf_name_retrived) == str(pdf_name):
+                if node_id not in seen_nodes and str(page_num) in page_number_retrived and str(pdf_name) in pdf_name_retrived:
                     seen_nodes.add(node_id)
                     node_data = {
                         "text": node.node.get_content(),
@@ -405,6 +422,7 @@ class MultiModalConversationalEngine(CustomQueryEngine):
 
 def get_base64_image(image_path: str) -> str:
     try:
+        image_path = image_path.replace("\\", "/") 
         with open(image_path, "rb") as image_file:
             return base64.b64encode(image_file.read()).decode('utf-8')
     except Exception as e:
@@ -433,7 +451,8 @@ async def query_documents(request: QueryRequest):
             chat_history[memory_key] = ChatMemoryBuffer.from_defaults()
         
         # Create custom query engine
-        query_engine = MultiModalConversationalEngine(
+        query_engine = MultiModalConversationalEngine()
+        query_engine.intialize_engine(
             retriever=current_index.as_retriever(similarity_top_k=3),
             multi_modal_llm=gpt_4v,
             memory_buffer=chat_history[memory_key]
