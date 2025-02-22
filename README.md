@@ -2,12 +2,6 @@
 
 A sophisticated PDF chatbot leveraging Retrieval-Augmented Generation (RAG) with multimodal capabilities, enabling intelligent conversations about both textual and visual content from PDF documents.
 
-## 🎥 Demo
-
-![PDF RAG Chatbot Demo](assets/demo.gif)
-
-*Demo shows the chatbot analyzing a PDF document, processing queries, and displaying responses with source attribution and images*
-
 ## Features
 
 - **Advanced RAG Implementation**: Custom multimodal RAG system using LlamaIndex + LlamaParse + Instructor Embeddings + ChromaDB + GPT-4V + Guardrails via Custom Prompt
