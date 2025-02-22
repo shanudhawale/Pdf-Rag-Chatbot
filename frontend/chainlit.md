@@ -1,6 +1,6 @@
-# Welcome to RAG Document Assistant! 👋
+# Welcome to Multi-Modal Conversational RAG Document Assistant! 👋
 
-This is a document assistant that can help you query and analyze your documents on financial and presentation statements from Conoco Phillips.
+This is a document assistant that can help you query and analyze your documents on financial statements and presentation from Conoco Phillips.
 
 ## Features
 - Ask questions about your documents

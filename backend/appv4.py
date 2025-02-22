@@ -1,6 +1,5 @@
 import logging
-from fastapi import FastAPI, HTTPException, UploadFile, File
-from fastapi.responses import StreamingResponse
+from fastapi import FastAPI, HTTPException, File
 from pydantic import BaseModel, Field
 from typing import Optional, List, Dict, Any
 from llama_index.core import StorageContext, VectorStoreIndex, ServiceContext
@@ -373,6 +372,7 @@ class MultiModalConversationalEngine(CustomQueryEngine):
         print(image_documents)
         if not image_documents:
             logger.warning("No valid images found in the retrieved nodes")
+            image_documents = []  # Ensure we have an empty list if no images
         
         # Add text response with images
         text_response = self._llm.complete(
